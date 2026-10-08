@@ -1,3 +1,5 @@
+def attempt = 0
+
 pipeline {
     agent any
 
@@ -64,7 +66,17 @@ pipeline {
         stage('Package') {
             steps {
                 retry(3) {
-                    echo 'Creating QuickCart application package'
+                    script {
+                        attempt++
+
+                        echo "Package attempt: ${attempt}"
+
+                        if (attempt < 3) {
+                            error 'Simulated temporary packaging failure'
+                        }
+
+                        echo 'Package created successfully'
+                    }
                 }
             }
         }
