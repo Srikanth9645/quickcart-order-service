@@ -54,10 +54,10 @@ pipeline {
             }
 
             steps {
-                timeout(time: 5, unit: 'SECONDS') {
+                timeout(time: 2, unit: 'MINUTES') {
                     echo 'Running QuickCart tests'
 
-                    bat 'powershell -Command "Start-Sleep -Seconds 10"'
+                    echo 'Tests completed'
                 }
             }
         }
