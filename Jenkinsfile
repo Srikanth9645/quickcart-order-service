@@ -63,7 +63,9 @@ pipeline {
         }
         stage('Package') {
             steps {
-                echo 'Creating QuickCart package'
+                retry(3) {
+                    echo 'Creating QuickCart application package'
+                }
             }
         }
     }
