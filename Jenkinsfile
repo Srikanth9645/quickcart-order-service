@@ -33,7 +33,6 @@ pipeline {
                 echo "Target Environment: ${params.ENVIRONMENT}"
 
                 echo "Run Tests: ${params.RUN_TESTS}"
-
             }
         }
 
@@ -55,12 +54,13 @@ pipeline {
             }
 
             steps {
-                echo 'Running QuickCart tests'
+                timeout(time: 2, unit: 'MINUTES') {
+                    echo 'Running QuickCart tests'
 
-                echo 'Tests completed successfully'
+                    echo 'Tests completed'
+                }
             }
         }
-
         stage('Package') {
             steps {
                 echo 'Creating QuickCart package'
